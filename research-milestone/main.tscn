@@ -10,6 +10,15 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+colors = PackedColorArray(0.54901963, 0.003921569, 0.92941177, 1, 0.5372549, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_16ygy"]
+gradient = SubResource("Gradient_h2yge")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjnhd"]
+size = Vector2(992, 32)
+
 [node name="Main" type="Node" unique_id=1685134580]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
@@ -32,6 +41,17 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_7mycd")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=125859361]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=179916023]
+position = Vector2(496, 272)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1958813547]
+position = Vector2(-6.1035156e-05, 0)
+scale = Vector2(3.875, -32.000023)
+texture = SubResource("GradientTexture1D_16ygy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=239390126]
+shape = SubResource("RectangleShape2D_wjnhd")
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
